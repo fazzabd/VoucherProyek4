@@ -6,8 +6,8 @@
 	A POS user creates vouchers for the customers in which specific code is mentioned. This code is used to provide a flat or percent based discount, on customers order.
     """,
     'author': 'A2 JTK 2016 Semester 4',
-    'depends': ['sale', 'account'],
-    'data': [],
+    'depends': ['point_of_sale', 'account'],
+    'data': ['views/pos_voucher_views.xml'],
     'images': ['static/description/icon.png'],
     'application': True,
     'installable': True,
