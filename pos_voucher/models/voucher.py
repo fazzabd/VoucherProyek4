@@ -11,6 +11,7 @@ class VoucherPOS(models.Model) :
 	voucher_code = fields.Char('Code')
 	voucher_usage = fields.Selection([
         ('posEcommerce', 'Both POS & Ecommerce'),
+		('eco', 'Ecommerce'),
         ('pos', 'Point of Sales'),
         ], string='Coupon Used In', required=True)
 	customer_type = fields.Selection([

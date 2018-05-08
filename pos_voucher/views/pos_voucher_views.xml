@@ -13,8 +13,8 @@
 			view_mode="tree,form" />
 
 		<act_window id="action_giftconf"
-			name="Gift Voucher Configuration"
-			res_model="voucher"
+			name="Voucher Configuration"
+			res_model="voucher.config"
 			view_type="form"
 			view_mode="tree,form" />
 

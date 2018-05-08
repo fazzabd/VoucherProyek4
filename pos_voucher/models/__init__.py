@@ -1,1 +1,1 @@
-from . import voucher
+from . import voucher,voucher_config
