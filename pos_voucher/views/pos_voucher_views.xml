@@ -3,20 +3,20 @@
 	<!-- Action to open Employee Ideas list -->
 	<act_window id="action_giftvocs"
 		name="All Vouchers"
-		res_model=""
+		res_model="voucher"
 		view_type="form"
-		view_mode="tree,form,kanban" />
+		view_mode="tree,form" />
 
 		<act_window id="action_gifhist"
 			name="Voucher History"
-			res_model=""
-			view_mode="tree,form,kanban" />
+			res_model="voucher"
+			view_mode="tree,form" />
 
 		<act_window id="action_giftconf"
 			name="Gift Voucher Configuration"
-			res_model=""
+			res_model="voucher"
 			view_type="form"
-			view_mode="tree,form,kanban" />
+			view_mode="tree,form" />
 
 	<!-- Menu item to open Employee Ideas list -->
 
@@ -33,7 +33,7 @@
 
 	<menuitem id="side_menu_voc_ida"
 		name="Voucher History"
-		parent="menu_voc"
+		parent="side_menu_voc"
 		action="action_gifhist"
 		/>
 
