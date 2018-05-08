@@ -1,15 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+	<!-- Action to open Employee Ideas list -->
+	<act_window id="action_giftvocs"
+		name="All Vouchers"
+		res_model=""
+		view_type="form"
+		view_mode="tree,form,kanban" />
 
-	<menuitem
-            id="menu_voucher"
-            name="Gift Voucher"
-            parent="point_of_sale.menu_point_root"
-         />
-    <menuitem 
-    		id="voucher"
-			name="All Voucher"
-			parent="menu_voucher"
-    	/>
+		<act_window id="action_gifhist"
+			name="Voucher History"
+			res_model=""
+			view_mode="tree,form,kanban" />
 
+		<act_window id="action_giftconf"
+			name="Gift Voucher Configuration"
+			res_model=""
+			view_type="form"
+			view_mode="tree,form,kanban" />
+
+	<!-- Menu item to open Employee Ideas list -->
+
+	<menuitem id="side_menu_voc"
+		name="Gift Vouchers"
+		parent="point_of_sale.menu_point_root"
+		/>
+
+	<menuitem id="side_menu_voc_id"
+		name="All Vouchers"
+		parent="side_menu_voc"
+		action="action_giftvocs"
+		/>
+
+	<menuitem id="side_menu_voc_ida"
+		name="Voucher History"
+		parent="menu_voc"
+		action="action_gifhist"
+		/>
+
+	<menuitem id="side_menu_conf_id"
+		name="Gift Voucher"
+		parent="point_of_sale.menu_point_config_product"
+		action="action_giftconf"
+		/>
 </odoo>
