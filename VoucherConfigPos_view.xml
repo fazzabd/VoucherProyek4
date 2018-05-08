@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<odoo>
+
+	<record id="wk_coupons.voucher_config_form" model="ir.ui.view">
+		<field name="name">Gift Voucher</field>
+		<field name="model">voucher.config</field>
+		<field name="arch" type="xml">
+			<form string="Voucher Configuration>
+				<group name="group_right">
+					<field name="name"/>
+					<field name="product_id"/>
+					<field name="default_value"/>
+					<field name="default_availability"/>
+					<field name="voucher_usage"/>
+					<field name="max_expiry_date"/>
+				</group>
+				
+				<group name="group_right">
+				<field name="active"/>
+				</group>
+				
+				<notebook>
+				<page string="Default Config">
+					<group name="group_left">
+						<field name="name"/>
+						<field name="min_amount"/>
+						<field name="customer_type"/>
+					</group>
+					<group name="group_right">
+						<field name="default_validity "/>
+						<field name="max_amount"/>
+					</group>
+					
+				</page>
+				<page string="Advanced Config">
+					<group name="group_left">
+						<field name="partially_use"/>
+						<field name="use_minimum_cart_value"/>
+					</group>
+					<group name="group_right">
+						<field name="partial_limit"/>
+						<field name="minimum_cart_amount"/>
+					</group>
+				
+				</page>
+				</notebook>
+			
+	
+	
+
+			</form>
+		</field>
+	</record>
+			
+
+
+
+
+
+
+
+
+
+
+
+
+</odoo>
