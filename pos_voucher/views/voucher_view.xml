@@ -55,7 +55,7 @@
 							<field name="redeemption_limit"/>
 						</group>
 						</page>
-                        <page name="products" string="Products">
+                        <page name="product" string="Products">
                         	<group>
 								<field name="applied_on"/>
 							</group>
@@ -78,7 +78,7 @@
 	</record>
 	
 	<record id="view_tree_voucher" model="ir.ui.view">
-		<field name="name">Voucher Tree</field>
+		<field name="name">Voucher POS Tree</field>
 		<field name="model">voucher</field>
 		<field name="arch" type="xml">
 			<tree>
