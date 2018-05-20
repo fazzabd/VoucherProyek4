@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<odoo>
+  <record id="view_form_history" model="ir.ui.view">
+		<field name="name">History Form</field>
+		<field name="model">history</field>
+		<field name="arch" type="xml">
+			<form string="History">
+				<sheet>
+				<group>
+					<group name="group_left">
+						<field name="name" readonly="1"/>
+						<!-- <field name="user_id" readonly="1"/> -->
+					</group>
+					<group name="group_right">
+						<!-- <field name="channel_used" />
+						<field name="create_date" readonly="1"/> -->
+					</group>
+				</group>
+        <group>
+					<group name="group_left">
+						<!-- <field name="voucher_value" readonly="1"/> -->
+            <!-- <field name="order_id" readonly="1" attrs="{'invisible':[('channel_used','!=','eco)]}"/>
+            <field name="pos_order_id" readonly="1" attrs="{'invisible':[('channel_used','!=','pos')]}"/>
+						<field name="voucher_id"/> -->
+					</group>
+					<group name="group_right">
+						<!-- <field name="transaction_type"/> -->
+						<!-- <field name="pos_order_line_id" readonly="1" attrs="{'invisible':[('channel_used','!=','eco')]}"/>
+            <field name="sale_order_line_id" readonly="1" attrs="{'invisible':[('channel_used','!=','eco')]}"/> -->
+					</group>
+				</group>
+        <group>
+          <group name="group_left">
+          <field name="desription">
+        </group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+  <record model="ir.ui.view" id="view_history_tree">
+      <field name="name">history.view.tree</field>
+      <field name="model">history</field>
+      <field eval="10" name="priority"/>
+      <field name="arch" type="xml">
+          <tree string="Voucher History" create="0" delete="0">
+            <field name="name"/>
+            <field name="channel_used"/>
+            <field name="user_id"/>
+            <field name="create_date"/>
+            <field name="voucher_value"/>
+            <field name="transaction_type"/>
+            <field name="order_id"/>
+            <field name="sale_order_line_id"/>
+            <field name="voucher_id"/>
+          </tree>
+      </field>
+  </record>
+
+  <record model="ir.ui.view" id="view_history_graph">
+      <field name="name">history.view.graph</field>
+      <field name="model">history</field>
+      <field eval="12" name="priority"/>
+      <field name="arch" type="xml">
+          <graph string="Voucher History" type="pie">
+              <field name="name" type="row"/>
+              <field name="voucher_value" type="measure"/>
+          </graph>
+      </field>
+  </record>
+
+  <record model="ir.ui.view" id="view_history_pivot">
+      <field name="name">history.view.pivot</field>
+      <field name="model">history</field>
+      <field name="arch" type="xml">
+          <pivot string="History">
+              <field name="name" type="row"/>
+              <field name="channel_used" type="row"/>
+              <field name="user_id" type="row"/>
+              <field name="create_date" type="row"/>
+              <field name="transaction_type" type="row"/>
+              <field name="order_id" type="row"/>
+              <field name="state" type="row"/>
+          </pivot>
+      </field>
+  </record>
+
+</odoo>
