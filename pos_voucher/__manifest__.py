@@ -11,6 +11,8 @@
 		'views/pos_voucher_views.xml',
 		'views/voucher_view.xml',
 		'views/voucherconfig_view.xml',
+        'views/history_view.xml',
+        'security/ir.model.access.csv',
 		],
     'images': ['static/description/icon.png'],
     'application': True,

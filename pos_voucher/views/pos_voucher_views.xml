@@ -9,7 +9,7 @@
 
 		<act_window id="action_gifhist"
 			name="Voucher History"
-			res_model="voucher"
+			res_model="history"
 			view_mode="tree,form" />
 
 		<act_window id="action_giftconf"

@@ -1,7 +1,10 @@
 # -*- coding : utf-8 -*- 
-from odoo import models, fields,api
+from odoo import models, fields, api
 from datetime import datetime
 from datetime import timedelta
+
+import random
+import string
 
 class VoucherPOS(models.Model) :
 	_name = 'voucher'
@@ -41,3 +44,7 @@ class VoucherPOS(models.Model) :
 	display_desc_in_web = fields.Boolean('Display Description in Website',default=True)
 	note = fields.Text('Description')
 	
+
+	# @api.model
+	# def _get_default_code():
+ #    	return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))

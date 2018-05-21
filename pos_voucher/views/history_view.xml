@@ -9,29 +9,30 @@
 				<group>
 					<group name="group_left">
 						<field name="name" readonly="1"/>
-						<!-- <field name="user_id" readonly="1"/> -->
+						<field name="user_id" readonly="1"/>
 					</group>
 					<group name="group_right">
-						<!-- <field name="channel_used" />
-						<field name="create_date" readonly="1"/> -->
+						<field name="channel_used" />
+						<field name="create_date" readonly="1"/>
 					</group>
 				</group>
         <group>
 					<group name="group_left">
-						<!-- <field name="voucher_value" readonly="1"/> -->
-            <!-- <field name="order_id" readonly="1" attrs="{'invisible':[('channel_used','!=','eco)]}"/>
+						<field name="voucher_value" readonly="1"/>
+            <!-- <field name="order_id" readonly="1" attrs="{'invisible':[('channel_used','!=','eco)]}"/> -->
             <field name="pos_order_id" readonly="1" attrs="{'invisible':[('channel_used','!=','pos')]}"/>
-						<field name="voucher_id"/> -->
+						<field name="voucher_id"/>
 					</group>
 					<group name="group_right">
-						<!-- <field name="transaction_type"/> -->
+						<field name="transaction_type"/>
 						<!-- <field name="pos_order_line_id" readonly="1" attrs="{'invisible':[('channel_used','!=','eco')]}"/>
             <field name="sale_order_line_id" readonly="1" attrs="{'invisible':[('channel_used','!=','eco')]}"/> -->
 					</group>
 				</group>
         <group>
           <group name="group_left">
-          <field name="desription">
+          <field name="description"/>
+          </group>
         </group>
 				</sheet>
 			</form>
