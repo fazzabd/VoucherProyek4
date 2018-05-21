@@ -7,6 +7,7 @@ class VoucherPOS(models.Model) :
     _name = 'voucher'
     _inherit=['mail.thread']
     _description = 'Voucher POS'
+    # _inherits = {'history': 'hist_id'}
 
     name = fields.Char('Name',required=True)
     voucher_code = fields.Char('Code')

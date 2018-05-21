@@ -13,7 +13,7 @@
 		'views/voucherconfig_view.xml',
         'report/voucher_report.xml',
         'report/voucher_template.xml',
-        #'views/history_view.xml',
+        'views/history_view.xml',
         'security/ir.model.access.csv',
 		],
     'images': ['static/description/icon.png'],
