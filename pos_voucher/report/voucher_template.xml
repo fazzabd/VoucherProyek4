@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+
+<odoo>
+
+		<template id="report_template">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="o">
+					<t t-call="report.external_layout">
+						<div class="page" align="center">
+						<!-- edit tampilan -->
+						<h1 align="center"><strong>Coupon</strong></h1>
+						<h5><strong>Tel:</strong> 110 23456789 </h5>
+						<h5><strong>Email:</strong> admin@yourcompany.example.com </h5>
+						<h5><strong>Website:</strong> www.your-company.com </h5>
+						<h4><strong>Coupon Description:</strong></h4>
+						<h5><strong>End Of Season Discount:</strong></h5>
+						<h4><strong>Validity:</strong></h4>
+						<div>From : <span t-field="o.issue_date"/></div>
+						<div>To : <span t-field="o.expiry_date"/></div>
+						<h5><strong>Coupon Value :</strong> 0.0 </h5>
+
+						<table class="table table-bordered" style="table-layout:auto;">
+										 <thead>
+												 <tr>
+												 <td>Note: Keep Your Secret Voucher Code Safe</td>
+												 </tr>
+										</thead>
+					 </table>
+						</div>
+					</t>
+				</t>
+			</t>
+		</template>
+</odoo>
