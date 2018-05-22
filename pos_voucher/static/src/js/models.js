@@ -1,4 +1,4 @@
-function pos_voucher_models(instance, module){
+function pos_template_models(instance, module){
     //pos_base is instance.point_of_sale;
 
     var QWeb = instance.web.qweb;

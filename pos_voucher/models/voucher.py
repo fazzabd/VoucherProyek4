@@ -77,3 +77,19 @@ class VoucherPOS(models.Model) :
             'target': 'new',
             'context': ctx,
         }
+
+    @api.model
+    def create(self, values):
+        """Override default Odoo create function and extend."""
+        # Do your custom logic here
+        record = self.env['history'].create({'voucher_id': self.id})
+        return super(VoucherPOS, self).create(values)
+
+  #   @api.multi
+  #   def write(self, values):
+  #       """Override default Odoo write function and extend."""
+  #       # Do your custom logic here
+  #       record_ids = self.env['history'].search([('voucher_id', '=', self.id)])
+		# for record in record_ids:
+  #   		record.write({'some_field': 'some_description'})
+  #       return super(ResPartner, self).write(values)
