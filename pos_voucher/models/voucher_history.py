@@ -6,7 +6,7 @@ class VoucherHistoryPOS(models.Model) :
 	_name = 'history'
 	_description = 'Voucher History'
 	voucher_id = fields.Many2one('voucher','Voucher')
-	name = fields.Char('Voucher Name', related='voucher_id.name',default='voucher_id.name')
+	name = fields.Char('Voucher Name', related='voucher_id.name')
 	channel_used = fields.Selection([
 		('posEco', 'Both POS & Ecommerce'),
 		('eco', 'Ecommerce'),
