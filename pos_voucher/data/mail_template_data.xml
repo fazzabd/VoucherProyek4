@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="email_template_voucher" model="mail.template">
+          <field name="name">Voucher - Send By Email</field>
+          <field name="email_from">kartika34sari@gmail.com</field>
+          <field name="subject">Voucher and Coupon</field>
+          <field name="email_to">${object.email|safe}</field>
+          <field name="lang">${object.lang}</field>
+          <field name="model_id" ref="pos_voucher.model_voucher"/>
+          <field name="auto_delete" eval="True"/>
+          <field name="report_template" ref="pos_voucher.action_report"/>
+          <field name="report_name">GiftVoucher</field>
+      	  <field name="body_html">
+                  <![CDATA[
+      	     <p>Dear <strong>${object.customer_type} Customer</strong>,</p>
+             <p>Congratulation you get voucher for ${object.voucher_usage} with code <strong>${object.code}<strong>.</p>
+             <p>This voucher expired in <strong>${object.expiry_date}</strong>.</p>
+             <br>
+             <p>Thank you.</p>
+      	    ]]>
+      	  </field>
+       </record>
+    </data>
+</odoo>
