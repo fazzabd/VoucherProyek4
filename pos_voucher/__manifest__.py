@@ -17,6 +17,7 @@
         'security/ir.model.access.csv',
 		],
     'images': ['static/description/icon.png'],
+    'qweb': ['static/src/xml/pos_voucher.xml'],
     'application': True,
     'installable': True,
     'auto_install': False,

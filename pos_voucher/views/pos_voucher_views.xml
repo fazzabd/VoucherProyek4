@@ -42,4 +42,13 @@
 		parent="point_of_sale.menu_point_config_product"
 		action="action_giftconf"
 		/>
+
+	<data>
+  		<template id="assets_backend" name="pos_voucher assets" inherit_id="point_of_sale.assets">
+    		<xpath expr="." position="inside">
+      		<link rel="stylesheet" href="/pos_voucher/static/src/css/pos_voucher.css"/>
+      		<script type="text/javascript" src="/pos_voucher/static/src/js/pos_voucher.js"></script>
+    		</xpath>
+  		</template>
+	</data>
 </odoo>
