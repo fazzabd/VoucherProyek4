@@ -1,16 +1,16 @@
 # -*- coding : utf-8 -*-
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from datetime import datetime
 from datetime import timedelta
+import logging
 
 class VoucherPOS(models.Model) :
     _name = 'voucher'
     _inherit=['mail.thread']
     _description = 'Voucher POS'
-    # _inherits = {'history': 'hist_id'}
 
     name = fields.Char('Name',required=True)
-    voucher_code = fields.Char('Code')
+    voucher_code = fields.Char('Code', index=True)
     voucher_usage = fields.Selection([
     ('posEcommerce', 'Both POS & Ecommerce'),
     ('eco', 'Ecommerce'),
@@ -30,10 +30,10 @@ class VoucherPOS(models.Model) :
     ('fix', 'Fixed'),
     ], string='Voucher val type')
     voucher_value = fields.Float('Voucher Value',required=True)
-    minimum_cart_amount = fields.Float('Minimum Cart Amount',required=True)
+    minimum_cart_amount = fields.Float('Minimum Cart Amount')
     use_minimum_cart_value = fields.Boolean('Use Cart Amount Validation')
     is_partially_redemed = fields.Boolean('Use Partial Redemption')
-    redeemption_limit = fields.Integer('Max Redemption Limit',required=True)
+    redeemption_limit = fields.Integer('Max Redemption Limit')
     applied_on = fields.Selection([
     ('all', 'All Products'),
     ('specific', 'Specific Product'),
@@ -79,18 +79,7 @@ class VoucherPOS(models.Model) :
         }
 
     @api.model
-    def create(self, values):
-        """Override default Odoo create function and extend."""
-        # Do your custom logic here	
-        res = super(VoucherPOS, self).create(values)
-        record = self.env['history'].create({'voucher_id': res.id})
-        return res
-
-  #   @api.multi
-  #   def write(self, values):
-  #       """Override default Odoo write function and extend."""
-  #       # Do your custom logic here
-  #       record_ids = self.env['history'].search([('voucher_id', '=', self.id)])
-		# for record in record_ids:
-  #   		record.write({'some_field': 'some_description'})
-  #       return super(ResPartner, self).write(values)
+    def create(self, vals):
+        seq = self.env['ir.sequence'].get('voucher') or '/'
+        vals['voucher_code'] = seq
+        return super(VoucherPOS, self).create(vals)
