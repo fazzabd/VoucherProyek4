@@ -2,9 +2,45 @@
 <template id="template" xml:space="preserve">
 	<t t-name='VoucherButton'>
      	<div class="control-button">
-     	<!-- <span class='control-button-number'> -->
             <i class='fa fa-star' /> Manage Coupon
-       	<!-- </span> -->
        </div>
     </t>
+
+    <t t-name="CouponPopupWidget">
+        <div class="modal-dialog">
+            <div class="popup popup-textinput">
+                <p class="title"><t t-esc=" widget.options.title || '' " /></p>
+                <input class="coupon_code" type='text' t-att-value="widget.options.value || ''"></input>
+                <div class="coupon_status">
+                    <p class="coupon_status_p"></p>
+                </div>
+                <div class="footer">
+                    <div class="button confirm-coupon" style="display:none;">
+                        Apply
+                    </div>
+                    <div class="button cancel">
+                        Cancel
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="RedeemPopupWidget">
+        <div class="modal-dialog">
+            <div class="popup popup-textinput">
+                <p class="title"><t t-esc=" widget.options.title || '' " /></p>
+                <input type='text' t-att-value="widget.options.value || ''"></input>
+                <div class="footer">
+                    <div class="button validate">
+                        Validate
+                    </div>
+                    <div class="button cancel">
+                        Cancel 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
 </template>
