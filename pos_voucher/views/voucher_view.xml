@@ -81,7 +81,7 @@
 		<field name="name">Voucher POS Tree</field>
 		<field name="model">voucher</field>
 		<field name="arch" type="xml">
-			<tree colors="red:expiry_date and (expiry_date &lt; current_date)">
+			<tree>
 				<field name="name"/>
 				<field name="voucher_code"/>
 				<field name="voucher_usage"/>
@@ -93,7 +93,7 @@
 	</record>
 
 	<record id="action_history" model="ir.actions.act_window">
-    <field name="name">Voucher History</field>
+    <field name="name">Voucher Hwistory</field>
     <field name="res_model">history</field>
     <field name="type">ir.actions.act_window</field>
     <field name="view_type">form</field>
