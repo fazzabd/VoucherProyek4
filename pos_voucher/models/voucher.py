@@ -79,7 +79,9 @@ class VoucherPOS(models.Model) :
         }
 
     @api.model
-    def create(self, vals):
-        seq = self.env['ir.sequence'].get('voucher') or '/'
-        vals['voucher_code'] = seq
-        return super(VoucherPOS, self).create(vals)
+    def create(self, values):
+        """Override default Odoo create function and extend."""
+        # Do your custom logic here 
+        res = super(VoucherPOS, self).create(values)
+        record = self.env['history'].create({'voucher_id': res.id})
+        return res
