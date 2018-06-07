@@ -86,4 +86,22 @@
       </field>
   </record>
 
+  <record model="ir.ui.view" id="view_filter_voucher_history">
+    <field name="name">history.view.filter</field>
+    <field name="model">history</field>
+    <field name="arch" type="xml">
+      <search string="Voucher History">
+        <group expand="0" string="Group By...">
+          <filter string="Voucher Name" name="group_by_name" context="{'group_by':'name'}" domain="[]"/>
+        </group>
+      </search>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="pos_voucher.action_gifhist">
+    <field name="context">
+      {'search_default_group_by_name': True}
+    </field>
+  </record>
+
 </odoo>
