@@ -4,8 +4,9 @@ odoo.define('pos_voucher',function(require){
 var core = require('web.core');
 var screens = require('point_of_sale.screens');
 var gui = require('point_of_sale.gui');
-
-
+var _t  = require('web.core')._t;
+// var PosBaseWidget = require('point_of_sale.BaseWidget');
+// var pos_popup = require('point_of_sale.popups');
 //Custom Code
 var VoucherButton = screens.ActionButtonWidget.extend({
     template: 'VoucherButton',
@@ -13,17 +14,14 @@ var VoucherButton = screens.ActionButtonWidget.extend({
     button_click: function(){
 
     var self = this;
-    self.custom_function();
-    this.gui.show_popup('number', {
-            'title':  _t('Voucher'),
-            
+    this.gui.show_popup('textinput', {
+            'title':  _t('Redeem Gift Coupon'),
+            // 'confirm': function(value) {
+            //          this.gui.close_popup();
+            //     },
         });
 
     },
-
-    custom_function: function(){
-        console.log('Hi I am button click of CustomButton');
-    }
 
 });
 

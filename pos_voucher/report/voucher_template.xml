@@ -13,13 +13,13 @@
 						<h4><strong>Validity:</strong></h4>
 						<div>From : <span t-field="o.issue_date"/></div>
 						<div>To : <span t-field="o.expiry_date"/></div>
-						<h5><strong>Coupon Value :</strong> 0.0 </h5>
+						<h5><strong>Coupon Value :</strong> <span t-field="o.voucher_value"/> </h5>
 						<img t-if="o.voucher_code" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.voucher_code, 400, 60)"/>
 						<h5><strong>Your Secret Voucher Code Is : <span t-field="o.voucher_code"/></strong></h5>
 						<table class="table table-bordered" style="table-layout:auto;">
 										 <thead>
 												 <tr>
-												 <td>Note: Keep Your Secret Voucher Code Safe</td>
+												 <td align="center">Note: Keep Your Secret Voucher Code Safe</td>
 												 </tr>
 										</thead>
 					 </table>

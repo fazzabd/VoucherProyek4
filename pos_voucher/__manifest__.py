@@ -18,7 +18,7 @@
         'data/mail_template_data.xml',
         'data/ir_sequence_data.xml',
 		],
-    'images': ['static/description/icon.png'],
+    'images': ['static/description/icon_image.jpg'],
     'qweb': ['static/src/xml/pos_voucher.xml'],
     'application': True,
     'installable': True,
