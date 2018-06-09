@@ -1,4 +1,4 @@
-# -*- coding : utf-8 -*- 
+# -*- coding : utf-8 -*-
 from odoo import models, fields, api
 from datetime import datetime
 
@@ -7,7 +7,7 @@ class VoucherHistoryPOS(models.Model) :
 	_description = 'Voucher History'
 	name = fields.Char('Voucher Name')
 	channel_used = fields.Selection([
-		('posEco', 'Both POS & Ecommerce'),
+		('posEcommerce', 'Both POS & Ecommerce'),
 		('eco', 'Ecommerce'),
 		('pos', 'Point of Sales'),
 		], string='Channel')
