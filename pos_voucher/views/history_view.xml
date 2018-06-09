@@ -39,6 +39,7 @@
 		</field>
 	</record>
 
+  <!-- tree -->
   <record model="ir.ui.view" id="view_history_tree">
       <field name="name">history.view.tree</field>
       <field name="model">history</field>
@@ -52,8 +53,6 @@
             <field name="voucher_value"/>
             <field name="transaction_type"/>
             <field name="order_id"/>
-            <field name="sale_order_line_id"/>
-            <field name="voucher_id"/>
           </tree>
       </field>
   </record>
@@ -86,6 +85,7 @@
       </field>
   </record>
 
+  <!-- untuk filter search group_by_name-->
   <record model="ir.ui.view" id="view_filter_voucher_history">
     <field name="name">history.view.filter</field>
     <field name="model">history</field>
@@ -98,6 +98,7 @@
     </field>
   </record>
 
+  <!-- untuk filter search "group by name" default -->
   <record model="ir.actions.act_window" id="pos_voucher.action_gifhist">
     <field name="context">
       {'search_default_group_by_name': True}

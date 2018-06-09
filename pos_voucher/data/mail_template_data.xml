@@ -14,7 +14,7 @@
       	  <field name="body_html">
                   <![CDATA[
       	     <p>Dear <strong>${object.customer_type} Customer</strong>,</p>
-             <p>Congratulation you get voucher for ${object.voucher_usage} with code <strong>${object.voucher_code}<strong>.</p>
+             <p>Congratulation you get voucher for ${object.voucher_usage} with code <strong>${object.code}<strong>.</p>
              <p>This voucher expired in <strong>${object.expiry_date}</strong>.</p>
              <br>
              <p>Thank you.</p>
