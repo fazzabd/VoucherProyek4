@@ -100,5 +100,6 @@ class VoucherPOS(models.Model) :
             # 'pos_order_id': record.
             # 'pos_order_line_id': record.
             'transaction_type': 'credit',
+            'state': 'draft',
         })
         return record

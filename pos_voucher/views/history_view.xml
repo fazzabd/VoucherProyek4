@@ -53,6 +53,7 @@
             <field name="voucher_value"/>
             <field name="transaction_type"/>
             <field name="order_id"/>
+            <field name="state"/>
           </tree>
       </field>
   </record>
