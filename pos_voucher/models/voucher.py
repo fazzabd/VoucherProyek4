@@ -94,6 +94,7 @@ class VoucherPOS(models.Model) :
             'user_id': record.customer_id,
             'create_date': record.issue_date,
             'voucher_value': record.voucher_value,
+            'voucher_id' : super(VoucherPOS, self),
             # 'transaction_type': record.
             # 'order_id': record.
             # 'sale_order_line_id': record.

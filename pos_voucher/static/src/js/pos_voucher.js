@@ -62,7 +62,7 @@ var round_pr = utils.round_precision;
 
     function get_coupon_product(products) {
         for (var i in products){
-            if(products[i]['display_name'] == 'Gift-Coupon')
+            if(products[i]['display_name'] == 'Gift-Voucher')
                 return products[i]['id'];
         }
         return false;
