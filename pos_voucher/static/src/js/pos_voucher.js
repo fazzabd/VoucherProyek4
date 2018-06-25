@@ -268,7 +268,7 @@ var CouponPopupWidget = pos_popup.extend({
                                                
                         if(flag){
                             var val = coupon_res[0]['voucher_val_type'] == 'fix' ?
-                                coupon_res[0]['voucher_value'] : coupon_res[0]['voucher_val'] + "%";
+                                coupon_res[0]['voucher_value'] : coupon_res[0]['voucher_value'] + "%";
                             var obj = $(".coupon_status_p").text("voucher value is : "+val+" \n" +
                                 " Do you want to proceed ? \n This operation cannot be reversed.");
                             obj.html(obj.html().replace(/\n/g,'<br/>'));
@@ -314,46 +314,47 @@ var CouponPopupWidget = pos_popup.extend({
                             }
                             if (order.coupon_status['voucher_val_type'] == 'persen') {
                                 price *= order.get_total_with_tax() * order.coupon_status['voucher_value'] / 100;
+                            }   
+                            if ((order.get_total_with_tax() + price) < 0) {
+                                //self.gui.close_popup();
+                                // self.gui.show_popup('error', {
+                                //     'title': _t('Unable to apply coupon !'),
+                                //     'body': _t('Coupon amount is too large to apply. The total amount cannot be negative'),
+                                // });
+                                price = order.get_total_with_tax() * -1 ; 
                             }
-                            if ((order.get_total_with_tax - price) <= 0) {
-                                self.gui.close_popup();
-                                self.gui.show_popup('error', {
-                                    'title': _t('Unable to apply coupon !'),
-                                    'body': _t('Coupon amount is too large to apply. The total amount cannot be negative'),
-                                });
-                            }
-                            else{
-                                order.add_product(product, {quantity: 1, price: price});
-                                order.coupon_applied();
-                                // updating coupon balance after applying coupon
-                                var client = self.pos.get_client();
-                                var temp = {
-                                    'partner_id': client['id'],
-                                    'coupon_pos': order.coupon_status['voucher_code'],
-                                };
-                                //new Model('partner.coupon.pos').call('update_history', ['', temp]).done(function (result) {
-                                    // alert("result")
-                                    // var applied = self.pos.coupons;
-                                    // var already_used = false;
-                                    // for (var j in applied) {
-                                    //     if (applied[j]['customer_id'][0] == client['id'] &&
-                                    //         applied[j]['voucher_code'] == order.coupon_status['voucher_code']) {
-                                    //         // applied[j]['number_pos'] += 1;
-                                    //         already_used = true;
-                                    //         break;
-                                    //     }
-                                    // }
-                                    // if (!already_used) {
-                                    //     var temp = {
-                                    //         'partner_id': [client['id'], client['name']],
-                                    //         'number_pos': 1,
-                                    //         'coupon_pos': order.coupon_status['code']
-                                    //     };
-                                    //     self.pos.applied_coupon.push(temp);
-                                    // }
-                                //});
-                                self.gui.close_popup();
-                            }
+                        
+                            order.add_product(product, {quantity: 1, price: price});
+                            order.coupon_applied();
+                            // updating coupon balance after applying coupon
+                            var client = self.pos.get_client();
+                            var temp = {
+                                'partner_id': client['id'],
+                                'coupon_pos': order.coupon_status['voucher_code'],
+                            };
+                            //new Model('partner.coupon.pos').call('update_history', ['', temp]).done(function (result) {
+                                // alert("result")
+                                // var applied = self.pos.coupons;
+                                // var already_used = false;
+                                // for (var j in applied) {
+                                //     if (applied[j]['customer_id'][0] == client['id'] &&
+                                //         applied[j]['voucher_code'] == order.coupon_status['voucher_code']) {
+                                //         // applied[j]['number_pos'] += 1;
+                                //         already_used = true;
+                                //         break;
+                                //     }
+                                // }
+                                // if (!already_used) {
+                                //     var temp = {
+                                //         'partner_id': [client['id'], client['name']],
+                                //         'number_pos': 1,
+                                //         'coupon_pos': order.coupon_status['code']
+                                //     };
+                                //     self.pos.applied_coupon.push(temp);
+                                // }
+                            //});
+                            self.gui.close_popup();
+                    
                         }
                         else{
                             self.gui.close_popup();

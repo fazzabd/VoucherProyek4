@@ -2,7 +2,7 @@
 <templates id="coupon_template" xml:space="preserve">
     <!--template for coupons-->
     <t t-name="VoucherWidget">
-        <div class='control-button' style="width: 90%;margin-top: 5px;margin-bottom: -5px;">
+        <div class='control-button' style="width: 87%;margin-top: 5px;margin-bottom: -5px;">
             <div class="coupons">
                 <i class='fa fa-star' /> Manage Coupons
             </div>
