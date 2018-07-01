@@ -239,7 +239,7 @@ var CouponPopupWidget = pos_popup.extend({
                         //Teredit dari sini
                         if (coupon_res) {
                             // checking coupon status
-                            var coupon_stat = check_validity(coupon_res, self.pos.vouchers , customer);
+                            var coupon_stat = true //check_validity(coupon_res, self.pos.vouchers , customer);
                             // if this coupon was for a particular customer and is not used already
                             if(coupon_res[0]['customer_id'] && coupon_res[0]['customer_id'][0] != customer['id']){
                                 flag = false;
@@ -325,11 +325,11 @@ var CouponPopupWidget = pos_popup.extend({
                             order.add_product(product, {quantity: 1, price: price});
                             order.coupon_applied();
                             // updating coupon balance after applying coupon
-                            var client = self.pos.get_client();
-                            var temp = {
-                                'partner_id': client['id'],
-                                'coupon_pos': order.coupon_status['voucher_code'],
-                            };
+                            // var client = self.pos.get_client();
+                            // var temp = {
+                            //     'partner_id': client['id'],
+                            //     'coupon_pos': order.coupon_status['voucher_code'],
+                            // };
                             //new Model('partner.coupon.pos').call('update_history', ['', temp]).done(function (result) {
                                 // alert("result")
                                 // var applied = self.pos.coupons;
