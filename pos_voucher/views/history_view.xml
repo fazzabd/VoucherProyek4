@@ -58,7 +58,7 @@
       </field>
   </record>
 
-<!--   <record model="ir.ui.view" id="view_history_graph">
+  <record model="ir.ui.view" id="view_history_graph">
       <field name="name">history.view.graph</field>
       <field name="model">history</field>
       <field eval="12" name="priority"/>
@@ -84,7 +84,7 @@
               <field name="state" type="row"/>
           </pivot>
       </field>
-  </record> -->
+  </record>
 
   <!-- untuk filter search group_by_name-->
   <record model="ir.ui.view" id="view_filter_voucher_history">

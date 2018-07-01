@@ -1,4 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_voucher_group_user,voucher.user,model_voucher,sales_team.group_sale_manager,1,1,1,1
-access_history_group_user,history.user,model_history,sales_team.group_sale_manager,1,0,0,0
-access_voucher_group_user,voucher.user,model_voucher,sales_team.group_sale_manager,1,1,1,1
+access_voucher_group_user,voucher.user,model_voucher,base.group_user,1,1,1,1

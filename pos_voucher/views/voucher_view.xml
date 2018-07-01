@@ -20,7 +20,7 @@
 				</group_left>
 				<group_right>
 					<div class="oe_right oe_button_box" name="buttons">
-						<a href="#" onclick="window.open('/web#min=1&amp;limit=80&amp;view_type=list&amp;model=history&amp;menu_id=243&amp;action=346')"><button name="action_history" string="History" class="oe_stat_button" icon="fa-filter"/></a>
+						<button name="action_history" string="History" class="oe_stat_button" icon="fa-filter" type="action"/>
 					</div>
 				</group_right>
 				</group>
@@ -43,8 +43,8 @@
 						<group string="Pricing" col="2">
 							<label for="voucher_value"/>
 							<div>
-		             <field name="voucher_value" style="width:120px" required="1"/>
-		             <field name="voucher_val_type" style="width:80px" required="1"/>
+		             <field name="voucher_value" style="width:120px"/>
+		             <field name="voucher_val_type" style="width:80px"/>
 							</div>
 						</group>
 						<newline/>

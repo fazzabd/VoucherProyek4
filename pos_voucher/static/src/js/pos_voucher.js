@@ -24,13 +24,10 @@ var round_pr = utils.round_precision;
         for(var i in vouchers){
             if (vouchers[i]['voucher_code'] == code){
                 voucher.push(vouchers[i]);
+                return voucher;
             }
         }
-        if(voucher.length > 0){
-            return voucher;
-        }else{
-            return false;
-        }
+        return false;
     }
 
     function check_validity(voucher,vouchers, customer) {
@@ -44,7 +41,7 @@ var round_pr = utils.round_precision;
     }
 
     function check_expiry(start, end) {
-        var today = moment().format('YYYY-MM-DD');
+        var today = moment().format('YYYY-MM-DD HH:mm:ss');
         if(start && end) {
             if (today < start || today > end)
                 return false;
@@ -62,7 +59,7 @@ var round_pr = utils.round_precision;
 
     function get_coupon_product(products) {
         for (var i in products){
-            if(products[i]['display_name'] == 'Gift-Voucher')
+            if(products[i]['display_name'] == 'Gift-Coupon')
                 return products[i]['id'];
         }
         return false;
@@ -233,7 +230,7 @@ var CouponPopupWidget = pos_popup.extend({
                     });
                 }
                 else if(coupon){
-                    if(self.pos.get_client()){
+                    //if(self.pos.get_client()){
                         var customer = self.pos.get_client();
                         var coupon_res = find_voucher(coupon, self.pos.vouchers);
                         var flag = true;
@@ -242,12 +239,12 @@ var CouponPopupWidget = pos_popup.extend({
                         //Teredit dari sini
                         if (coupon_res) {
                             // checking coupon status
-                            var coupon_stat = true; //check_validity(coupon_res, self.pos.vouchers , customer);
+                            var coupon_stat = check_validity(coupon_res, self.pos.vouchers , customer);
                             // if this coupon was for a particular customer and is not used already
                             if(coupon_res[0]['customer_id'] && coupon_res[0]['customer_id'][0] != customer['id']){
                                 flag = false;
                             }
-                            var today = moment().format('YYYY-MM-DD');
+                            var today = moment().format('YYYY-MM-DD HH:mm:ss');
                             // checking coupon balance and expiry
                             if(flag && coupon_stat){
                                 // checking coupon validity
@@ -265,7 +262,7 @@ var CouponPopupWidget = pos_popup.extend({
                             flag = false;
                             $(".coupon_status_p").text("Invalid code. Please try again !!");
                         }
-                                               
+                        // flag = true;
                         if(flag){
                             var val = coupon_res[0]['voucher_val_type'] == 'fix' ?
                                 coupon_res[0]['voucher_value'] : coupon_res[0]['voucher_value'] + "%";
@@ -275,20 +272,21 @@ var CouponPopupWidget = pos_popup.extend({
                             var order = self.pos.get_order();
                             order.set_coupon_value(coupon_res[0]);
                         }
+                        self.flag = flag;
                         if(flag){
                            $(".confirm-coupon").css("display", "block");
-                           self.flag = true;
+                           //self.flag = true;
                         }
                         else{
                             var ob = $(".coupon_status_p").text("Invalid code or no coupons left. \nPlease check coupon validity.\n" +
                                 "or check whether the coupon usage is limited to a particular customer.");
                             ob.html(ob.html().replace(/\n/g,'<br/>'));
-                            self.flag = false;
+                            //self.flag = false;
                         }
-                    }
-                    else{
-                        $(".coupon_status_p").text("Please select a customer !!");
-                    }
+                    // }
+                    // else{
+                    //     $(".coupon_status_p").text("Please select a customer !!");
+                    // }
                 }
 
             });
