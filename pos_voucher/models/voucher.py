@@ -117,8 +117,10 @@ class VoucherPOS(models.Model) :
     @api.model
     def create(self, vals):
         
-        seq = self.env['ir.sequence'].get('voucher') or '/'
-        vals['voucher_code'] = seq
+        if vals['voucher_code'] is None :
+            seq = self.env['ir.sequence'].get('voucher') or '/'
+            vals['voucher_code'] = seq
+        
         record = super(VoucherPOS, self).create(vals)
         # search_ids = self.pool.get('voucher').search(cr, uid, [])
         # last_id = search_ids and max(search_ids)
