@@ -15,8 +15,7 @@ var core = require('web.core');
 var _t = core._t;
 var utils = require('web.utils');
 var round_pr = utils.round_precision;
-// var PosBaseWidget = require('point_of_sale.BaseWidget');
-// var pos_popup = require('point_of_sale.popups');
+
 //Custom Code
 
     function find_voucher(code, vouchers) {
@@ -240,13 +239,12 @@ var CouponPopupWidget = pos_popup.extend({
                     });
                 }
                 else if(coupon){
-                    //if(self.pos.get_client()){
                         var customer = self.pos.get_client();
                         var coupon_res = find_voucher(coupon, self.pos.vouchers);
                         var flag = true;
                         // is there a coupon with this code which has balance above zero
                         
-                        //Teredit dari sini
+                        //Teredit 
                         if (coupon_res) {
                             // checking coupon status
                             var coupon_stat = true //check_validity(coupon_res, self.pos.vouchers , customer);
@@ -286,18 +284,13 @@ var CouponPopupWidget = pos_popup.extend({
                         if(flag){
                            $(".confirm-coupon").css("display", "block");
                            self.coupon_res = coupon_res;
-                           //self.flag = true;
                         }
                         else{
                             var ob = $(".coupon_status_p").text("Invalid code or no coupons left. \nPlease check coupon validity.\n" +
                                 "or check whether the coupon usage is limited to a particular customer.");
                             ob.html(ob.html().replace(/\n/g,'<br/>'));
-                            //self.flag = false;
                         }
-                    // }
-                    // else{
-                    //     $(".coupon_status_p").text("Please select a customer !!");
-                    // }
+                    
                 }
 
             });
@@ -306,15 +299,14 @@ var CouponPopupWidget = pos_popup.extend({
                 if(self.flag){
                     var order = self.pos.get_order();
                     var lines = order ? order.orderlines : false;
-                    // if(order.coupon){
-                    //     self.gui.close_popup();
-                    //     self.gui.show_popup('error',{
-                    //         'title': _t('Unable to apply coupon !'),
-                    //         'body': _t('Either coupon is already applied or you have not selected any products.'),
-                    //     });
-                    // }
-                     //else{
-                        //if(lines.models.length > 0 && order.check_voucher_validy()) {
+                    if(order.coupon){
+                        self.gui.close_popup();
+                        self.gui.show_popup('error',{
+                            'title': _t('Unable to apply coupon !'),
+                            'body': _t('Either coupon is already applied or you have not selected any products.'),
+                        });
+                    }
+                     else{
                         if(lines.models.length > 0) {
                             var product = self.pos.db.get_product_by_id(self.coupon_product);
                             var price = -1;
@@ -325,11 +317,6 @@ var CouponPopupWidget = pos_popup.extend({
                                 price *= order.get_total_with_tax() * order.coupon_status['voucher_value'] / 100;
                             }   
                             if ((order.get_total_with_tax() + price) < 0) {
-                                //self.gui.close_popup();
-                                // self.gui.show_popup('error', {
-                                //     'title': _t('Unable to apply coupon !'),
-                                //     'body': _t('Coupon amount is too large to apply. The total amount cannot be negative'),
-                                // });
                                 price = order.get_total_with_tax() * -1 ; 
                             }
                         
@@ -337,48 +324,27 @@ var CouponPopupWidget = pos_popup.extend({
                             order.coupon_applied();
 
                             // Add History Faiz
-
+                            var cust = self.pos.get_client();
+                            if(cust){
+                                var id = cust['id'];
+                            }else{
+                                var id = null;
+                            }
                             var temp= {
                                 'name': self.coupon_res[0]['name'],
                                 'voucher_value': self.coupon_res[0]['voucher_value'],
                                 'channel_used': self.coupon_res[0]['voucher_usage'],
-                                'user_id': self.coupon_res[0]['customer_id'],
+                                'user_id': id,
                                 'voucher_id' : self.coupon_res[0]['id'],
                                 'transaction_type': 'debit',
                                 'state':'draft',
+                                'channel_used' : 'pos',
                                 'description': self.coupon_res[0]['note'],
                             }
                             // self.pos.histo.push(temp);
 
                             new Model('history').call('create',[temp]);
 
-                            // updating coupon balance after applying coupon
-                            // var client = self.pos.get_client();
-                            // var temp = {
-                            //     'partner_id': client['id'],
-                            //     'coupon_pos': order.coupon_status['voucher_code'],
-                            // };
-                            //new Model('partner.coupon.pos').call('update_history', ['', temp]).done(function (result) {
-                                // alert("result")
-                                // var applied = self.pos.coupons;
-                                // var already_used = false;
-                                // for (var j in applied) {
-                                //     if (applied[j]['customer_id'][0] == client['id'] &&
-                                //         applied[j]['voucher_code'] == order.coupon_status['voucher_code']) {
-                                //         // applied[j]['number_pos'] += 1;
-                                //         already_used = true;
-                                //         break;
-                                //     }
-                                // }
-                                // if (!already_used) {
-                                //     var temp = {
-                                //         'partner_id': [client['id'], client['name']],
-                                //         'number_pos': 1,
-                                //         'coupon_pos': order.coupon_status['code']
-                                //     };
-                                //     self.pos.applied_coupon.push(temp);
-                                // }
-                            //});
                             self.gui.close_popup();
                     
                         }
@@ -389,7 +355,7 @@ var CouponPopupWidget = pos_popup.extend({
                                 'body': _t('This coupon is not applicable on the products or category you have selected !'),
                             });
                         }
-                    //}
+                    }
                 }
                 else{
                     self.gui.close_popup();
@@ -402,12 +368,6 @@ var CouponPopupWidget = pos_popup.extend({
         },
     });
     gui.define_popup({name:'coupon', widget: CouponPopupWidget});
-
-// screens.define_action_button({
-//     'name': 'voucher_button',
-//     'widget': VoucherButton,
-// });
-
 
 
 });
