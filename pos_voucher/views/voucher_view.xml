@@ -20,7 +20,7 @@
 				</group_left>
 				<group_right>
 					<div class="oe_right oe_button_box" name="buttons">
-						<a href="#" onclick="window.open('/web#min=1&amp;limit=80&amp;view_type=list&amp;model=history&amp;menu_id=243&amp;action=346')"><button name="action_history" string="History" class="oe_stat_button" icon="fa-filter"/></a>
+						<a href="#" onclick="http://localhost:8069/web#min=1&amp;limit=80&amp;view_type=list&amp;model=history&amp;menu_id=243&amp;action=346"><button name="action_history" string="History" class="oe_stat_button" icon="fa-filter"/></a>
 					</div>
 				</group_right>
 				</group>
@@ -29,7 +29,7 @@
 						<field name="voucher_code" placeholder="Leave empty to auto generate voucher code."/>
 						<field name="voucher_usage"/>
 						<field name="customer_type"/>
-						<field name="customer_id" attrs="{'invisible':[('customer_type','=','all')]}"/>
+						<field name="customer_id" attrs="{'required':[('customer_type','=','specific')], 'invisible':[('customer_type','=','all')]}"/>
 					</group>
 					<group name="group_right">
 						<field name="active"/>
