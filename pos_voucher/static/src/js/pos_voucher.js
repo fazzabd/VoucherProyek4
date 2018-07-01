@@ -74,6 +74,14 @@ var round_pr = utils.round_precision;
             loaded: function (self, vouchers) {
                     self.vouchers = vouchers;
             },  
+        },
+        {
+            model: 'history',
+            fields: ['id', 'name','voucher_value','channel_used','user_id','create_date', 'voucher_id', 
+            'transaction_type', 'state' , 'description'],
+            loaded: function (self, histo) {
+                    self.histo = histo;
+            },
         }
         );
 
@@ -98,6 +106,7 @@ var VoucherWidget = PosBaseWidget.extend({
         initialize: function(session, attributes) {
             PosModelSuper.prototype.initialize.call(this, session, attributes)
             this.vouchers = [];
+            this.histo = [];
         },
     });
     
@@ -204,6 +213,7 @@ var CouponPopupWidget = pos_popup.extend({
             if(!this.coupon_product)
                 this.coupon_product = get_coupon_product(this.pos.db.product_by_id);
             this.flag = true;
+            this.coupon_res = [];
             this.coupon_status = [];
             this.renderElement();
             this.$('input').focus();
@@ -275,6 +285,7 @@ var CouponPopupWidget = pos_popup.extend({
                         self.flag = flag;
                         if(flag){
                            $(".confirm-coupon").css("display", "block");
+                           self.coupon_res = coupon_res;
                            //self.flag = true;
                         }
                         else{
@@ -324,6 +335,23 @@ var CouponPopupWidget = pos_popup.extend({
                         
                             order.add_product(product, {quantity: 1, price: price});
                             order.coupon_applied();
+
+                            // Add History Faiz
+
+                            var temp= {
+                                'name': self.coupon_res[0]['name'],
+                                'voucher_value': self.coupon_res[0]['voucher_value'],
+                                'channel_used': self.coupon_res[0]['voucher_usage'],
+                                'user_id': self.coupon_res[0]['customer_id'],
+                                'voucher_id' : self.coupon_res[0]['id'],
+                                'transaction_type': 'debit',
+                                'state':'draft',
+                                'description': self.coupon_res[0]['note'],
+                            }
+                            // self.pos.histo.push(temp);
+
+                            new Model('history').call('create',[temp]);
+
                             // updating coupon balance after applying coupon
                             // var client = self.pos.get_client();
                             // var temp = {
