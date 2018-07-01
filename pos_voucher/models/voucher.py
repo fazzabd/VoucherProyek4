@@ -94,6 +94,10 @@ class VoucherPOS(models.Model) :
             'user_id': record.customer_id,
             'create_date': record.issue_date,
             'voucher_value': record.voucher_value,
+<<<<<<< HEAD
+            'voucher_id' : super(VoucherPOS, self),
+=======
+>>>>>>> parent of a272675... Revert "coba fix"
             # 'transaction_type': record.
             # 'order_id': record.
             # 'sale_order_line_id': record.
