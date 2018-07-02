@@ -13,32 +13,32 @@ class VoucherPOS(models.Model) :
     def _current_value(self):
         value = self.env['voucher.config'].search([('id','=',1)])[0]
         return value.default_value
-	
+    
     @api.model
     def _current_cust(self):
         value = self.env['voucher.config'].search([('id','=',1)])[0]
         return value.customer_type
-	
+    
     @api.model
     def _current_usage(self):
         value = self.env['voucher.config'].search([('id','=',1)])[0]
         return value.voucher_usage
-		
+        
     @api.model
     def _current_validity(self):
         value = self.env['voucher.config'].search([('id','=',1)])[0]
         return value.default_validity
-	
+    
     @api.model
     def _current_mca(self):
         value = self.env['voucher.config'].search([('id','=',1)])[0]
         return value.minimum_cart_amount
-	
+    
     @api.model
     def _current_umcv(self):
         value = self.env['voucher.config'].search([('id','=',1)])[0]
         return value.use_minimum_cart_value
-		
+        
     name = fields.Char('Name',required=True)
     voucher_code = fields.Char('Code', index=True)
     voucher_usage = fields.Selection([
@@ -116,12 +116,12 @@ class VoucherPOS(models.Model) :
 
     @api.model
     def create(self, vals):
-        
-        if vals['voucher_code'] is None :
+        if vals['voucher_code']:
+            record = super(VoucherPOS, self).create(vals)
+        else:
             seq = self.env['ir.sequence'].get('voucher') or '/'
             vals['voucher_code'] = seq
-        
-        record = super(VoucherPOS, self).create(vals)
+            record = super(VoucherPOS, self).create(vals)
         # search_ids = self.pool.get('voucher').search(cr, uid, [])
         # last_id = search_ids and max(search_ids)
         self.env['history'].create({

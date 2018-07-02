@@ -273,7 +273,7 @@ var CouponPopupWidget = pos_popup.extend({
                         // flag = true;
                         if(flag){
                             var val = coupon_res[0]['voucher_val_type'] == 'fix' ?
-                                coupon_res[0]['voucher_value'] : coupon_res[0]['voucher_value'] + "%";
+                                "$ " + coupon_res[0]['voucher_value'] : coupon_res[0]['voucher_value'] + "%";
                             var obj = $(".coupon_status_p").text("voucher value is : "+val+" \n" +
                                 " Do you want to proceed ? \n This operation cannot be reversed.");
                             obj.html(obj.html().replace(/\n/g,'<br/>'));
