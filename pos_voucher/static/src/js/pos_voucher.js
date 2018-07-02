@@ -58,7 +58,7 @@ var round_pr = utils.round_precision;
 
     function get_coupon_product(products) {
         for (var i in products){
-            if(products[i]['display_name'] == 'Gift-Coupon')
+            if(products[i]['display_name'] == 'Gift-Voucher')
                 return products[i]['id'];
         }
         return false;
@@ -209,8 +209,8 @@ var CouponPopupWidget = pos_popup.extend({
         show: function(options){
             options = options || {};
             this._super(options);
-            if(!this.coupon_product)
-                this.coupon_product = get_coupon_product(this.pos.db.product_by_id);
+            //if(!this.coupon_product)
+            this.coupon_product = get_coupon_product(this.pos.db.product_by_id);
             this.flag = true;
             this.coupon_res = [];
             this.coupon_status = [];

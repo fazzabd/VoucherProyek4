@@ -17,6 +17,7 @@
         'security/ir.model.access.csv',
         'data/mail_template_data.xml',
         'data/ir_sequence_data.xml',
+        'data/product_data.xml',
 		],
     'images': ['static/description/icon.png'],
     'qweb': ['static/src/xml/pos_voucher.xml'],
