@@ -128,7 +128,7 @@ class VoucherPOS(models.Model) :
             'name': record.name,
             'voucher_value': record.voucher_value,
             'channel_used': record.voucher_usage,
-            'user_id': record.customer_id,
+            #'user_id': record.customer_id,
             'create_date': record.issue_date,
             'voucher_id' : record.id,
             # 'transaction_type': record.
