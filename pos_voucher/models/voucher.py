@@ -80,7 +80,7 @@ class VoucherPOS(models.Model) :
         self.ensure_one()
         ir_model_data = self.env['ir.model.data']
         try:
-            template_id = ir_model_data.get_object_reference('sale', 'email_template_edi_sale')[1]
+            template_id = ir_model_data.get_object_reference('pos_voucher', 'email_template_voucher')[1]
         except ValueError:
             template_id = False
         try:
@@ -128,7 +128,7 @@ class VoucherPOS(models.Model) :
             'name': record.name,
             'voucher_value': record.voucher_value,
             'channel_used': record.voucher_usage,
-            #'user_id': record.customer_id,
+            'user_id': record.customer_id,
             'create_date': record.issue_date,
             'voucher_id' : record.id,
             # 'transaction_type': record.
